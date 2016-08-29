@@ -91,3 +91,6 @@ feigong-venv
 
 .idea
 proxy-ip-list.csv
+
+# db
+.db

@@ -12,7 +12,15 @@ __author__ = "LoRexxar"
 
 def main():
 
-    log(logging.DEBUG, repr(int(time.time())) + ".log")
+    # 初始化log
+    try:
+        log(logging.DEBUG, repr(int(time.time())) + ".log")
+    except:
+        logger.error("init log error...")
+        exit(0)
+
+    # 初始化数据库
+
 
     drops_spider()
 
