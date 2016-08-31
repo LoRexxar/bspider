@@ -58,7 +58,7 @@ class SpiderDb:
         """
         values = self.select(title=title, content=content)
 
-        if values[0][1] == title and values[0][3] == content:
+        if len(values) != 0 and values[0][1] == title and values[0][3] == content:
             return 0
 
         in_sql = "INSERT INTO drops VALUES (null, ?, ?, ?)"

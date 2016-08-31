@@ -3,7 +3,7 @@
 
 from lib.log import logger
 from lib.log import log
-from spider.drops import drops_spider
+from spider.drops.drops import drops_spider
 import logging
 import time
 
@@ -18,9 +18,6 @@ def main():
     except:
         logger.error("init log error...")
         exit(0)
-
-    # 初始化数据库
-
 
     drops_spider()
 
