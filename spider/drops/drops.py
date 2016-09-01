@@ -2,9 +2,7 @@
 # -*- coding:utf-8 -*-
 
 from datetime import datetime
-
 from bs4 import BeautifulSoup
-
 from lib.log import logger
 from spider.core.parse import remove_label
 from spider.core.request import request
@@ -18,7 +16,6 @@ def drops_spider():
     """
     drops爬虫
     """
-
     # 初始化
     url = "http://drops.hduisa.org"
     essays = []
