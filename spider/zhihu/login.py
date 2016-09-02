@@ -38,8 +38,21 @@ def login():
         print html[0].encode('gb18030')
         xsrf = get_xsrf(bs0bj=html)
 
+        data = {
+            '_xsrf': xsrf,
+            'username': username,
+            'password': password
+        }
+
     except AttributeError:
         logger.error("html parse error...")
+
+    try:
+        response = request(url=url, header=header, value=data)
+
+        bs0bj = BeautifulSoup(response, "lxml")
+
+        
 
 
 def get_xsrf(bs0bj=None):
