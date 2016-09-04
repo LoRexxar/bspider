@@ -3,6 +3,7 @@
 
 import urllib
 import urllib2
+import requests
 from lib.log import logger
 
 __author__ = "LoRexxar"
@@ -16,21 +17,18 @@ def request(url=None, header={}, value=None):
     else:
         logger.info("Target url is {}".format(url))
 
-    if value is None:
-        logger.warning("POST value is empty...")
-    else:
-        data = urllib.urlencode(value)
-        value = urllib2.Request(url, data)
-
     if len(header) == 0:
         logger.warning("Header is empty...")
         header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
                   }
 
-    req = urllib2.Request(url, value, headers=header)
+    req = requests.Session()
 
     try:
-        response = urllib2.urlopen(req)
+        if value is None:
+            response = req.get(url, headers=header)
+        else:
+            response = req.post(url, data=value, headers=header)
     except urllib2.HTTPError:
         logger.error("urlopen error...")
         return None
@@ -38,4 +36,4 @@ def request(url=None, header={}, value=None):
         logger.error("Something error")
         return None
 
-    return response.read().decode('utf-8')
+    return response.text.encode('utf-8')
