@@ -52,7 +52,9 @@ def login():
 
         bs0bj = BeautifulSoup(response, "lxml")
 
-        
+    except AttributeError:
+        logger.error("html parse error...")
+
 
 
 def get_xsrf(bs0bj=None):
