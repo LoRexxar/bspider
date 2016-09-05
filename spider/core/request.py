@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-import urllib
-import urllib2
 import requests
 from lib.log import logger
 
@@ -29,10 +27,7 @@ def request(url=None, header={}, value=None):
             response = req.get(url, headers=header)
         else:
             response = req.post(url, data=value, headers=header)
-    except urllib2.HTTPError:
-        logger.error("urlopen error...")
-        return None
-    except urllib2.URLError:
+    except:
         logger.error("Something error")
         return None
 

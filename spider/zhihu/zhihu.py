@@ -8,6 +8,7 @@ from spider.core.parse import remove_label
 from spider.core.request import request
 from spider.zhihu.database import SpiderDb
 from spider.zhihu.login import login
+from spider.zhihu.login import check_login
 
 __author__ = "LoRexxar"
 
@@ -19,7 +20,9 @@ def zhihu_spider():
     """
     # 初始化
     url = "https://www.zhihu.com/collections"
-    essays = []
     db = SpiderDb('drops.db')
+    cookie = {}
 
-    login()
+
+    # login()
+    check_login(cookie)

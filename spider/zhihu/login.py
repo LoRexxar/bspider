@@ -5,7 +5,7 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from lib.log import logger
 from spider.core.parse import remove_label
-from spider.core.request import request
+from spider.core.ph_request import ph_request
 
 __author__ = "LoRexxar"
 
@@ -25,7 +25,7 @@ def login():
     password = "test123!@#"
 
     logger.info("Start login zhihu...")
-    response = request(url=url, header=header)
+    response = ph_request(url=url)
 
     if response is None:
         return 0
@@ -48,13 +48,12 @@ def login():
         logger.error("html parse error...")
 
     try:
-        response = request(url=url, header=header, value=data)
+        response = ph_request(url=url, header=header)
 
         bs0bj = BeautifulSoup(response, "lxml")
 
     except AttributeError:
         logger.error("html parse error...")
-
 
 
 def get_xsrf(bs0bj=None):
@@ -66,3 +65,6 @@ def get_xsrf(bs0bj=None):
     result = bs0bj[0].input.attrs["value"].encode('gb18030')
 
     return result
+
+def check_login(url, cookie):
+    
