@@ -81,7 +81,9 @@ def get_content(bs0bj=None):
         logger.error("bs0bj is None...")
         return None
 
-    result = bs0bj.div.encode('gb18030')
+    link = bs0bj.a.attrs['href'].encode('gb18030')
+
+    result = content(link)
 
     return remove_label(result)
 
@@ -95,3 +97,25 @@ def get_time(bs0bj=None):
     result = bs0bj.time.encode('gb18030')
 
     return remove_label(result)
+
+
+def content(url):
+
+    logger.info("Start Crawling drops page {}...".format(url))
+    response = request(url)
+
+    if response is None:
+        return 0
+
+    try:
+        bs0bj = BeautifulSoup(response, "lxml")
+        results = bs0bj.article.find_all("p")
+        result = ""
+
+        for content in results[:-5]:
+            result += content.encode('gb18030')
+
+    except AttributeError:
+        logger.error("html parse error...")
+
+    return result

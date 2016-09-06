@@ -22,7 +22,7 @@ def main():
 
     drops_spider()
 
-    zhihu_spider()
+    # zhihu_spider()
 
 if __name__ == '__main__':
     main()

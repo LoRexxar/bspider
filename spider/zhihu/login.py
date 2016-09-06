@@ -66,5 +66,8 @@ def get_xsrf(bs0bj=None):
 
     return result
 
+
 def check_login(url, cookie):
-    
+
+    logger.info("Start check zhihu login...")
+    response = ph_request(url=url)
