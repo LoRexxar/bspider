@@ -70,7 +70,7 @@ def get_title(bs0bj=None):
         logger.error("bs0bj is None...")
         return None
 
-    result = bs0bj.h2.a.encode('gb18030')
+    result = bs0bj.h2.a.encode('utf-8')
 
     return remove_label(result)
 
@@ -81,7 +81,7 @@ def get_content(bs0bj=None):
         logger.error("bs0bj is None...")
         return None
 
-    link = bs0bj.a.attrs['href'].encode('gb18030')
+    link = bs0bj.a.attrs['href']
 
     result = content(link)
 
@@ -94,7 +94,7 @@ def get_time(bs0bj=None):
         logger.error("bs0bj is None...")
         return None
 
-    result = bs0bj.time.encode('gb18030')
+    result = bs0bj.time.encode('utf-8')
 
     return remove_label(result)
 
@@ -113,7 +113,7 @@ def content(url):
         result = ""
 
         for content in results[:-5]:
-            result += content.encode('gb18030')
+            result += content.encode('utf-8')
 
     except AttributeError:
         logger.error("html parse error...")
