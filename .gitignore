@@ -93,4 +93,4 @@ feigong-venv
 proxy-ip-list.csv
 
 # db
-.db
+*.db
