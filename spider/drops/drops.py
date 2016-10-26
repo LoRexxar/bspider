@@ -61,7 +61,7 @@ def drops_spider():
         return 0
 
     for essay in essays:
-        print essay[0], essay[1]
+        print essay[0].decode('utf-8').encode('gb18030'), essay[1].decode('utf-8').encode('gb18030')
 
 
 def get_title(bs0bj=None):

@@ -71,7 +71,10 @@ class SpiderDb:
 
         se_sql = "SELECT * FROM drops WHERE title = '{}' and content = '{}'".format(title, content)
 
-        self.cur.execute(se_sql)
+        try:
+            self.cur.execute(se_sql)
+        except sqlite3.OperationalError:
+            logger.error("database insert error...")
 
         values = self.cur.fetchall()
 
